@@ -1,0 +1,50 @@
+﻿@model GoTravelApplication.Model.Administrator
+
+@{
+    ViewData["Title"] = "Administrator  Login";
+}
+
+<h1>Administrator Login</h1>
+
+
+@{
+    var Msg = "";
+    if (ViewData["msg"] != null)
+        if (ViewData["msg"].ToString() != "Fine")
+            Msg = ViewData["msg"].ToString();
+    if (Msg != "")
+    {
+        <h5 style="color:red;">@Msg</h5>
+    }
+}
+
+<div class="text-center">
+    <h1 class="display-4">Login Page</h1>
+
+    <hr />
+    <center>
+        <div class="row" style="text-align:center; margin:auto;">
+            <div class="col-md-4" style="text-align:match-parent; margin:auto;">
+                <form asp-action="Login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="AdminId" />
+                    <div class="form-group" style="text-align: match-parent; margin: auto;">
+                        <label asp-for="UserName" class="control-label"></label>
+                        <input asp-for="UserName" class="form-control" />
+                        <span asp-validation-for="UserName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="text-align: match-parent; margin: auto;">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <br />
+                    <div class="form-group" style="text-align: match-parent; margin: auto;">
+                        <input type="submit" value="Login" class="btn btn-primary" />
+                    </div>
+                </form>
+                <a asp-action="Create">Register</a>
+            </div>
+        </div>
+    </center>
+</div>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<GoTravelApplication.Model.CustomerBooking>
+
+@{
+    ViewData["Title"] = "Customer Home Page";
+}
+
+<h1>Customer Home Page</h1>
+
+<p>
+    <a asp-action="ToCart" asp-route-id="@ViewData["loggedCustomerId"]">View Your Cart</a>
+</p>
+<h4>Your Bookings:</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseDate)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.CustomerBookingId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.CustomerBookingId">Cancel Booking</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
