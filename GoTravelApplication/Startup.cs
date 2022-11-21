@@ -29,8 +29,8 @@ namespace GoTravelApplication
             services.AddControllersWithViews();
 
             var builder = new SqlConnectionStringBuilder(Configuration.GetConnectionString("Connection2RDS"));
-            builder.UserID = Configuration["User"];
-            builder.Password = Configuration["Pass"];
+            builder.UserID = "admin";
+            builder.Password = "rootadmin";
             var connection = builder.ConnectionString;
             services.AddDbContext<GoTravelContext>(options => options.UseSqlServer(connection));
         }
