@@ -27,8 +27,7 @@ This table has one record for all items in a customers cart, when a customer che
 - Customers will have one record in CartBookings for each Booking in their cart
 
 #### Pictures
-This table stores a filename that will correspond with a filename of a picture in an s3 bucket. That filename will be used to fetch the image file from the s3
-- Bookings will have one record in Pictures for each Picture they have
+### I am removing this table so do not worry about it
 
 #### ReceptionistChanges
 This table gets a record each time a receptionist makes a change to the status of a customer booking
