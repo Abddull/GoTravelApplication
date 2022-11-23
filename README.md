@@ -6,9 +6,9 @@ https://docs.google.com/spreadsheets/d/1ijL3BByw5I3kAJGhzWt9b_c3nhQ_oEjv5FLoVlgB
 
 ## Make sure you have these
 
-**PLEASE BOOT THIS ON VISUAL STUDIO 2019 AND MAKE SURE YOU HAVE "ASP.NET AND web devolopment" WORKLOAD INSTALLED VIA THE VISUAL STUDIO INSTALLER OR ELSE IT WILL NOT BOOT
+**PLEASE BOOT THIS ON VISUAL STUDIO 2019 AND MAKE SURE YOU HAVE "ASP.NET AND web devolopment" WORKLOAD INSTALLED VIA THE VISUAL STUDIO INSTALLER OR ELSE IT WILL NOT BOOT**
 
-THE DATABASE IS ON AWS SO MAKE SURE YOU HAVE AWS TOOLKIT FOR VISUAL STUDIO 2019 INSTALLED AND REMEMBER TO USE THE CREDENTIALS IN THE CSV FILE IN ORDER TO ACCESS THE DATABASE!**
+**THE DATABASE IS ON AWS SO MAKE SURE YOU HAVE AWS TOOLKIT FOR VISUAL STUDIO 2019 INSTALLED AND REMEMBER TO USE THE CREDENTIALS IN THE CSV FILE IN ORDER TO ACCESS THE DATABASE!**
 
 Please be mindful of the Low Fidelity Protoype when doing any work
 
@@ -27,7 +27,7 @@ This table has one record for all items in a customers cart, when a customer che
 - Customers will have one record in CartBookings for each Booking in their cart
 
 #### Pictures
-### I am removing this table so do not worry about it
+##### I am removing this table so do not worry about it
 
 #### ReceptionistChanges
 This table gets a record each time a receptionist makes a change to the status of a customer booking
