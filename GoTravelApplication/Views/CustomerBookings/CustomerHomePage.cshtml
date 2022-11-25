@@ -11,14 +11,22 @@
 </p>
 
 <h4>Your Trips:</h4>
-<br>
-
 <p>
     <a asp-action="CreateNew" asp-route-id="@ViewData["loggedCustomerId"]">
         <input type="submit" value="Add"
                class="btn btn-success btn-sm" />
     </a>
 </p>
+<form asp-action="Sort" class="text-danger">
+    <div class="form-group">
+        <label for="status" class="control-label">Search by status:</label>
+        <input type="text" id="status" class="form-control" name="paraG" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Sort"/>
+    </div>
+</form>
+
 
 <table class="table">
     <thead>

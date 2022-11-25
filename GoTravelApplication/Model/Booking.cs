@@ -21,8 +21,12 @@ namespace GoTravelApplication.Model
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
+        
         public virtual ICollection<CartBooking> CartBookings { get; set; }
         public virtual ICollection<CustomerBooking> CustomerBookings { get; set; }
         public virtual ICollection<Picture> Pictures { get; set; }
+       
     }
+
+    
 }

@@ -12,6 +12,9 @@ namespace GoTravelApplication.Controllers
     public class CustomerBookingsController : Controller
     {
         private readonly GoTravelContext _context;
+        private int curUserId;
+        private string titlePara = "";
+        private string genrePara;
 
         public CustomerBookingsController(GoTravelContext context)
         {
@@ -159,26 +162,51 @@ namespace GoTravelApplication.Controllers
             return View(customerBooking);
         }
 
-        // GET: CustomerBookings/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        //Sorting 
+        public async Task<IActionResult> Index(int activeKey)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var customerBooking = await _context.CustomerBookings
-                .Include(c => c.Booking)
-                .Include(c => c.Customer)
-                .FirstOrDefaultAsync(m => m.CustomerBookingId == id);
-            if (customerBooking == null)
-            {
-                return NotFound();
-            }
-
-            ViewData["loggedCustomerId"] = customerBooking.CustomerId;
-            return View(customerBooking);
+            genrePara = "";
+           // ratingPara = 0;
+            if (activeKey != 0)
+                curUserId = activeKey;
+            var moviesContext = _context.Bookings.Include(m => m.CustomerBookings);
+            var movs = await moviesContext.ToListAsync();
+            ViewData["LoggedUser"] = curUserId;
+            return View(movs);
         }
+
+        // GET: Movies
+        public async Task<IActionResult> Sort(string paraG, double paraD)
+        {
+            if (paraG != null)
+                genrePara = paraG;
+            
+            var moviesContext = _context.Bookings.Include(m => m.CustomerBookings);
+            var movs = await moviesContext.ToListAsync();
+            ViewData["LoggedUser"] = curUserId;
+            var sorted = new List<Booking>();
+            if (genrePara != "" )
+            {
+                foreach (Booking booking in movs)
+                {
+                    if ( booking.Title == genrePara)
+                        sorted.Add(booking);
+                }
+                return View("Index", sorted);
+            }
+            if (genrePara != "")
+            {
+                foreach (Booking booking in movs)
+                {
+                    if (booking.Title == genrePara)
+                        sorted.Add(booking);
+                }
+                return View("Index", sorted);
+            }
+            
+            return View(movs);
+        }
+
 
         // POST: CustomerBookings/Delete/5
         [HttpPost, ActionName("Delete")]
