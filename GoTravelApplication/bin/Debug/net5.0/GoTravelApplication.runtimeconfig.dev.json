@@ -1,9 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\QuanaFrea\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\QuanaFrea\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\Ahnaf\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Ahnaf\\.nuget\\packages"
     ]
   }
 }

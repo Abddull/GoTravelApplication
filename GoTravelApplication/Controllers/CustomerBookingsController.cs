@@ -18,20 +18,20 @@ namespace GoTravelApplication.Controllers
             _context = context;
         }
 
-        /*// GET: CustomerBookings
-        public async Task<IActionResult> CustomerHomePage(int customerId)
-        {
-            var goTravelContext = _context.CustomerBookings.Include(c => c.Booking).Include(c => c.Customer);
-            var customerBookings = await goTravelContext.ToListAsync();
-            var curBookings = new List<CustomerBooking>();
-            foreach (CustomerBooking cur in customerBookings)
-            {
-                if (cur.CustomerId == customerId)
-                    curBookings.Add(cur);
-            }
-            ViewData["loggedCustomerId"] = customerId;
-            return View(curBookings);
-        }*/
+        //// GET: CustomerBookings
+        //public async Task<IActionResult> CustomerHomePage(int customerId)
+        //{
+        //    var goTravelContext = _context.CustomerBookings.Include(c => c.Booking).Include(c => c.Customer);
+        //    var customerBookings = await goTravelContext.ToListAsync();
+        //    var curBookings = new List<CustomerBooking>();
+        //    foreach (CustomerBooking cur in customerBookings)
+        //    {
+        //        if (cur.CustomerId == customerId)
+        //            curBookings.Add(cur);
+        //    }
+        //    ViewData["loggedCustomerId"] = customerId;
+        //    return View(curBookings);
+        //}
 
         // GET: CustomerBookings
         public async Task<IActionResult> CustomerHomePage(int? id)
@@ -51,6 +51,11 @@ namespace GoTravelApplication.Controllers
         public IActionResult ToCart(int? id)
         {
             return RedirectToAction("Index", "CartBookings", new { id = id });
+        }
+
+        public IActionResult CreateNew(int? id)
+        {
+            return RedirectToAction("Create", "CustomerBookings", new { id = id });
         }
 
         // GET: CustomerBookings/Details/5

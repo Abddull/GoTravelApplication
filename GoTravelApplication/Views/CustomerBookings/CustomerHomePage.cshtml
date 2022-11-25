@@ -9,7 +9,17 @@
 <p>
     <a asp-action="ToCart" asp-route-id="@ViewData["loggedCustomerId"]">View Your Cart</a>
 </p>
-<h4>Your Bookings:</h4>
+
+<h4>Your Trips:</h4>
+<br>
+
+<p>
+    <a asp-action="CreateNew" asp-route-id="@ViewData["loggedCustomerId"]">
+        <input type="submit" value="Add"
+               class="btn btn-success btn-sm" />
+    </a>
+</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -63,4 +73,13 @@
             </tr>
         }
     </tbody>
+    
 </table>
+
+<p>
+    <a asp-action="Customer Home Page">Remove Search Parameters</a>
+</p>
+
+
+
+
