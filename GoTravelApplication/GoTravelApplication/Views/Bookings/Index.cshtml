@@ -1,0 +1,97 @@
+﻿@model IEnumerable<GoTravelApplication.Model.Booking>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Search Bookings</h1>
+
+<p>
+    <a asp-action="Back" asp-route-id="@ViewData["loggedCustomerId"]">Back To Home Page</a>
+</p>
+<form asp-action="Index" class="text-danger">
+    <input type="hidden" value="@ViewData["loggedCustomerId"]" name="id" />
+    <div class="form-group">
+        <label for="pricelow" class="control-label">Price Floor</label>
+        <input type="number" min="0" step="0.1" id="pricelow" class="form-control" name="paraPriceLow" />
+    </div>
+    <div class="form-group">
+        <label for="pricehigh" class="control-label">Price Ceiling</label>
+        <input type="number" min="0" step="0.1" id="pricelow" class="form-control" name="paraPriceHigh" />
+    </div>
+    <div class="form-group">
+        <label for="startlow" class="control-label">Starts After</label>
+        <input type="date" id="startlow" class="form-control" name="paraStartLow" />
+    </div>
+    <div class="form-group">
+        <label for="pricehigh" class="control-label">Starts Before</label>
+        <input type="date" id="pricehigh" class="form-control" name="paraStartHigh" />
+    </div>
+    <div class="form-group">
+        <label for="endlow" class="control-label">Ends After</label>
+        <input type="date" id="endlow" class="form-control" name="paraEndLow" />
+    </div>
+    <div class="form-group">
+        <label for="endhigh" class="control-label">Ends Before</label>
+        <input type="date" id="endhigh" class="form-control" name="paraEndHigh" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Sort" />
+    </div>
+</form>
+
+<h3>All Bookings</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                <form asp-action="Details" class="text-danger">
+                    <input type="hidden" value="@ViewData["loggedCustomerId"]" name="id" />
+                    <input type="hidden" value="@item.BookingId" name="bookId" />
+
+                    <div class="form-group">
+                        <input type="submit" value="View Booking" />
+                    </div>
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
