@@ -40,15 +40,103 @@ namespace GoTravelApplication.Controllers
             }
             if (loggedReceptionist == null)
                 return RedirectToAction("Index", new { msg = "Login Credentials are incorrect" });
-            return RedirectToAction("ReceptionistHomePage");
+            return RedirectToAction("ReceptionistHomePage", new { id = loggedReceptionist.ReceptionistId });
         }
 
         // GET: CustomerBookings
-        public IActionResult ReceptionistHomePage()
+        public async Task<IActionResult> ReceptionistHomePage(int? id, string msg)
         {
-            return View();
+            var receptionist = await _context.Receptionists.FindAsync(id);
+            ViewData["loggedReceptionistId"] = id;
+            ViewData["msg"] = msg;
+            return View(receptionist);
         }
 
+        public async Task<IActionResult> SearchPage(int? id, int paraId)
+        {
+            var bookings = await _context.Bookings.ToListAsync();
+            if (paraId != 0)
+            {
+                foreach (Booking book in await _context.Bookings.ToListAsync())
+                {
+                    if (paraId != 0)
+                    {
+                        if (book.Price == paraId)
+                            bookings.Remove(book);
+                    }
+                }
+            }
+            ViewData["loggedCustomerId"] = id;
+            return View(bookings);
+        }
+
+
+        public async Task<IActionResult> BookingDetails(int? id, int? bookId)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("ReceptionistHomePage", new { id = id, msg = "Booking with the specified Id was not found" });
+            }
+
+            var booking = await _context.CustomerBookings.FindAsync(bookId);
+            if (booking == null)
+            {
+                return RedirectToAction("ReceptionistHomePage", new { id = id, msg = "Booking with the specified Id was not found" });
+            }
+            ViewData["loggedReceptionistId"] = id;
+            return View(booking);
+        }
+
+
+        public async Task<IActionResult> EditBooking(int? id, int? bookId)
+        {
+            if (bookId == null)
+            {
+                return NotFound();
+            }
+
+            var booking = await _context.CustomerBookings.FindAsync(bookId);
+            if (booking == null)
+            {
+                return NotFound();
+            }
+            ViewData["loggedReceptionistId"] = id;
+            return View(booking);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditBookingDetails(int? id, int? bookId, string status)
+        {
+            var customerBooking = await _context.CustomerBookings.FindAsync(bookId);
+            var receptionistChange = new ReceptionistChange(); 
+            receptionistChange.OldStatus = customerBooking.Status;
+            receptionistChange.NewStatus = status;
+            receptionistChange.ChangeTime = DateTime.Now;
+            receptionistChange.ReceptionistId = (int)id;
+            receptionistChange.CustomerBookingId = customerBooking.CustomerBookingId;
+            customerBooking.Status = status;
+            try
+            {
+                _context.Update(customerBooking);
+                _context.Add(receptionistChange);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CustomerBookingExists(customerBooking.CustomerBookingId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            ViewData["loggedReceptionistId"] = id;
+            return RedirectToAction("BookingDetails", new { id = id, bookId = customerBooking.CustomerBookingId });
+        }
 
 
         // GET: Receptionists/Details/5
@@ -174,6 +262,11 @@ namespace GoTravelApplication.Controllers
         private bool ReceptionistExists(int id)
         {
             return _context.Receptionists.Any(e => e.ReceptionistId == id);
+        }
+
+        private bool CustomerBookingExists(int id)
+        {
+            return _context.CustomerBookings.Any(e => e.CustomerBookingId == id);
         }
     }
 }

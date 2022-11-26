@@ -1,7 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model GoTravelApplication.Model.Receptionist
 
 <h1>Receptionist Home Page</h1>
+<h4>
+    Welcome @Model.UserName
+</h4>
+
+@{
+    var Msg = "";
+    if (ViewData["msg"] != null)
+        if (ViewData["msg"].ToString() != "Fine")
+            Msg = ViewData["msg"].ToString();
+    if (Msg != "")
+    {
+        <h5 style="color:red;">@Msg</h5><br>
+    }
+}
+<form asp-action="BookingDetails" class="text-danger">
+    <input type="hidden" value="@Model.ReceptionistId" name="id" />
+    <input type="number" min="0" name="bookId" required="required"/>
+
+    <div class="form-group">
+        <input type="submit" value="Search Booking Id" />
+    </div>
+</form>

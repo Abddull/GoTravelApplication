@@ -394,3 +394,5 @@ C:\GoTravel\repo testing\GoTravelApplication\GoTravelApplication\GoTravelApplica
 C:\GoTravel\repo testing\GoTravelApplication\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\ref\GoTravelApplication.dll
 C:\GoTravel\repo testing\GoTravelApplication\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\GoTravelApplication.pdb
 C:\GoTravel\repo testing\GoTravelApplication\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\GoTravelApplication.genruntimeconfig.cache
+C:\GoTravel\repo testing\GoTravelApplication\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Receptionists\BookingDetails.cshtml.g.cs
+C:\GoTravel\repo testing\GoTravelApplication\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Receptionists\EditBooking.cshtml.g.cs

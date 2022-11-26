@@ -1,0 +1,43 @@
+﻿@model GoTravelApplication.Model.CustomerBooking
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>CustomerBooking</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditBookingDetails">
+            <input type="hidden" value="@ViewData["loggedReceptionistId"]" name="id" />
+            <input type="hidden" value="@Model.CustomerBookingId" name="bookId" />
+            <div class="form-group">
+                <select id="statud" name="status" class="form-control">
+                    <option value="" selected disabled hidden>Select One</option>
+                    <option value="Unused">Unused</option>
+                    <option value="Active">Active</option>
+                    <option value="Expired">Expired</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <form asp-action="BookingDetails" class="text-danger">
+        <input type="hidden" value="@ViewData["loggedReceptionistId"]" name="id" />
+        <input type="hidden" value="@Model.CustomerBookingId" name="bookId" />
+
+        <div class="form-group">
+            <input type="submit" value="Cancel" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
