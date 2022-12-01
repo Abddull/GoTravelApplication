@@ -1,0 +1,114 @@
+﻿@model IEnumerable<GoTravelApplication.Model.CustomerBooking>
+
+@{
+    ViewData["Title"] = "AdminDetails";
+}
+
+<h1>AdminDetails</h1>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            CustomerId
+        </dt>
+        <dd class="col-sm-10">
+            @ViewData["customerId"].ToString()
+        </dd>
+        <dt class="col-sm-2">
+            UserName
+        </dt>
+        <dd class="col-sm-10">
+            @ViewData["username"].ToString()
+        </dd>
+        <dt class="col-sm-2">
+            Password
+        </dt>
+        <dd class="col-sm-10">
+            @ViewData["password"].ToString()
+        </dd>
+    </dl>
+</div>
+
+<form asp-action="AdminCreate" class="text-danger">
+    <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+    <input type="hidden" value="@ViewData["customerId"]" name="custId" />
+
+    <div class="form-group">
+        <input type="submit" value="Create Customer Booking" class="btn btn-secondary"/>
+    </div>
+</form>
+<h3>All Customer Bookings</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Booking.EndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseDate)
+                </td>
+                <td>
+                    <form asp-action="AdminBookDetails" class="text-danger">
+                        <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+                        <input type="hidden" value="@item.CustomerBookingId" name="bookingId" />
+
+                        <div class="form-group">
+                            <input type="submit" value="View Details" />
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <form asp-action="AdminEdit" class="text-danger">
+        <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+        <input type="hidden" value="@ViewData["customerId"]" name="custId" />
+
+        <div class="form-group">
+            <input type="submit" value="Edit Customer Details" />
+        </div>
+    </form>
+    <a asp-action="AdminSearch" asp-route-id="@ViewData["loggedAdminId"]">Back to List</a>
+</div>

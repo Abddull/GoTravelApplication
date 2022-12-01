@@ -1,0 +1,64 @@
+﻿@model GoTravelApplication.Model.CustomerBooking
+
+@{
+    ViewData["Title"] = "AdminDetails";
+}
+
+<h1>AdminDetails</h1>
+
+<div>
+    <h4>CustomerBooking</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PurchaseDate)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Booking)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Booking.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Customer.Password)
+        </dd>
+    </dl>
+</div>
+<div>
+    <form asp-action="AdminEdit" class="text-danger">
+        <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+        <input type="hidden" value="@Model.CustomerBookingId" name="bookingId" />
+
+        <div class="form-group">
+            <input type="submit" value="Edit Booking" class="btn btn-primary" />
+        </div>
+    </form>
+    <form asp-action="AdminDelete" class="text-danger">
+        <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+        <input type="hidden" value="@Model.CustomerBookingId" name="bookingId" />
+
+        <div class="form-group">
+            <input type="submit" value="Cancel Booking" class="btn btn-danger" />
+        </div>
+    </form>
+    <form asp-action="BackToAdmin" class="text-danger">
+        <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+        <input type="hidden" value="@Model.CustomerId" name="custId" />
+
+        <div class="form-group">
+            <input type="submit" value="Back to Customer Details" class="btn btn-secondary" />
+        </div>
+    </form>
+</div>

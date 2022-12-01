@@ -1,7 +1,25 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model GoTravelApplication.Model.Administrator
 
 <h1>Adminstrator Home Page</h1>
+<h4>
+    Welcome @Model.UserName
+</h4>
+
+<form asp-action="OpenCustomerSearchPage" class="text-danger">
+    <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+    <div class="form-group">
+        <input type="submit" value="Search Customers" />
+    </div>
+</form>
+<form asp-action="OpenBookingSearchPage" class="text-danger">
+    <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+    <div class="form-group">
+        <input type="submit" value="Search Bookings" />
+    </div>
+</form>
+<form asp-action="OpenModeratorSearchPage" class="text-danger">
+    <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+    <div class="form-group">
+        <input type="submit" value="Search Moderators" />
+    </div>
+</form>

@@ -12,7 +12,6 @@ namespace GoTravelApplication.Controllers
     public class ModeratorsController : Controller
     {
         private readonly GoTravelContext _context;
-        private Moderator loggedMod;
 
         public ModeratorsController(GoTravelContext context)
         {
@@ -30,6 +29,7 @@ namespace GoTravelApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("ModeratorId,UserName,Password")] Moderator moderator)
         {
+            Moderator loggedMod = null;
             var moderators = await _context.Moderators.ToListAsync();
             foreach (Moderator cur in moderators)
             {
@@ -41,13 +41,88 @@ namespace GoTravelApplication.Controllers
             }
             if (loggedMod == null)
                 return RedirectToAction("Index", new { msg = "Login Credentials are incorrect" });
-            return RedirectToAction("ModeratorHomePage");
+            return RedirectToAction("ModeratorHomePage", new { id = loggedMod.ModeratorId });
+        }
+
+        public async Task<ActionResult> ModeratorHomePage(int id)
+        {
+            var mod = await _context.Moderators.FindAsync(id);
+            ViewData["loggedModId"] = id;
+            return View(mod);
+        }
+
+        public async Task<ActionResult> AdminSearch(int? id, int? modId, string username)
+        {
+            var moderators = await _context.Moderators.ToListAsync();
+            foreach (Moderator cur in await _context.Moderators.ToListAsync())
+            {
+                if (modId != 0 && modId != null)
+                    if (modId != cur.ModeratorId)
+                        moderators.Remove(cur);
+                if (username != null && username != "")
+                    if (username != cur.UserName)
+                        moderators.Remove(cur);
+            }
+            ViewData["loggedAdminId"] = id;
+            return View(moderators);
+        }
+
+        public async Task<ActionResult> AdminDetails(int? id, int? modId)
+        {
+            var moderator = await _context.Moderators.FindAsync(modId);
+            ViewData["loggedAdminId"] = id;
+            return View(moderator);
+        }
+
+        public async Task<ActionResult> AdminEdit(int? id, int? modId)
+        {
+            if (modId == null)
+            {
+                return NotFound();
+            }
+
+            var moderator = await _context.Moderators.FindAsync(modId);
+            if (moderator == null)
+            {
+                return NotFound();
+            }
+            ViewData["loggedAdminId"] = id;
+            return View(moderator);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DoEdit(int id, [Bind("ModeratorId,UserName,Password")] Moderator moderator)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(moderator);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ModeratorExists(moderator.ModeratorId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                ViewData["loggedAdminId"] = id;
+                return RedirectToAction("AdminDetails", new { id = id, modId = moderator.ModeratorId });
+            }
+            ViewData["loggedAdminId"] = id;
+            return View(moderator);
         }
 
         // GET: CustomerBookings
-        public IActionResult ModeratorHomePage()
+        public ActionResult AdminBack(int? id)
         {
-            return View();
+            return RedirectToAction("AdminHomePage", "Administrators", new { id = id });
         }
 
         // GET: Moderators/Details/5

@@ -57,6 +57,101 @@ namespace GoTravelApplication.Controllers
             return View(curBookings);
         }
 
+        public async Task<ActionResult> AdminSearch(int? id, int? custId, string username)
+        {
+            var customers = await _context.Customers.ToListAsync();
+            foreach (Customer cur in await _context.Customers.ToListAsync())
+            {
+                if (custId != 0 && custId != null)
+                    if (custId != cur.CustomerId)
+                        customers.Remove(cur);
+                if (username != null && username != "")
+                    if (username != cur.UserName)
+                        customers.Remove(cur);
+            }
+            ViewData["loggedAdminId"] = id;
+            return View(customers);
+        }
+
+        public async Task<ActionResult> AdminDetails(int? id, int? custId)
+        {
+            var goTravelContext = _context.CustomerBookings.Include(c => c.Booking).Include(c => c.Customer);
+            var customer = await _context.Customers.FindAsync(custId);
+            var customerBookings = await goTravelContext.ToListAsync();
+            foreach(CustomerBooking cur in await goTravelContext.ToListAsync())
+            {
+                if (cur.CustomerId != custId)
+                    customerBookings.Remove(cur);
+            }
+            ViewData["loggedAdminId"] = id;
+            ViewData["customerId"] = custId;
+            ViewData["username"] = customer.UserName;
+            ViewData["password"] = customer.Password;
+            return View(customerBookings);
+        }
+
+        public ActionResult AdminBookDetails(int? id, int? bookingId)
+        {
+            return RedirectToAction("AdminDetails", "CustomerBookings", new { id = id , bookingId = bookingId });
+        }
+
+        public async Task<ActionResult> AdminEdit(int? id, int? custId)
+        {
+            if (custId == null)
+            {
+                return NotFound();
+            }
+
+            var customer = await _context.Customers.FindAsync(custId);
+            if (customer == null)
+            {
+                return NotFound();
+            }
+            ViewData["loggedAdminId"] = id;
+            return View(customer);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DoEdit(int id, [Bind("CustomerId,UserName,Password")] Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(customer);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CustomerExists(customer.CustomerId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                ViewData["loggedAdminId"] = id;
+                return RedirectToAction("AdminDetails", new { id = id, custId = customer.CustomerId });
+            }
+            ViewData["loggedAdminId"] = id;
+            return View(customer);
+        }
+
+        // GET: CustomerBookings
+        public ActionResult AdminBack(int? id)
+        {
+            return RedirectToAction("AdminHomePage", "Administrators", new { id = id });
+        }
+
+        // GET: CustomerBookings
+        public ActionResult AdminCreate(int? id, int? custId)
+        {
+            return RedirectToAction("AdminCreate", "CustomerBookings", new { id = id, custId = custId });
+        }
+
         // GET: Customers/Details/5
         public async Task<IActionResult> Details(int? id)
         {

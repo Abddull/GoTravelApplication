@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GoTravelApplication.Model.Moderator>
+
+@{
+    ViewData["Title"] = "AdminSearch";
+}
+
+<h1>Moderator Search</h1>
+
+<p>
+    <a asp-action="AdminBack" asp-route-id="@ViewData["loggedAdminId"]">Back To Home Page</a>
+</p>
+<form asp-action="AdminSearch" class="text-danger">
+    <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+    <div class="form-group">
+        <label for="modId" class="control-label">Moderator Id</label>
+        <input type="number" min="0" id="modId" class="form-control" name="modId" />
+    </div>
+    <div class="form-group">
+        <label for="username" class="control-label">User Name</label>
+        <input type="text" id="username" class="form-control" name="username" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Sort" />
+    </div>
+</form>
+
+<h3>All Moderators</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    <form asp-action="AdminDetails" class="text-danger">
+                        <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+                        <input type="hidden" value="@item.ModeratorId" name="modId" />
+
+                        <div class="form-group">
+                            <input type="submit" value="View Details" />
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

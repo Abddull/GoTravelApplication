@@ -12,7 +12,6 @@ namespace GoTravelApplication.Controllers
     public class AdministratorsController : Controller
     {
         private readonly GoTravelContext _context;
-        private Administrator loggedAdmin;
 
         public AdministratorsController(GoTravelContext context)
         {
@@ -30,6 +29,7 @@ namespace GoTravelApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("AdministratorId,UserName,Password")] Administrator administrator)
         {
+            Administrator loggedAdmin = null;
             var administrators = await _context.Administrators.ToListAsync();
             foreach (Administrator cur in administrators)
             {
@@ -41,13 +41,33 @@ namespace GoTravelApplication.Controllers
             }
             if (loggedAdmin == null)
                 return RedirectToAction("Index", new { msg = "Login Credentials are incorrect" });
-            return RedirectToAction("AdminHomePage");
+            return RedirectToAction("AdminHomePage", new { id = loggedAdmin.AdminId });
         }
 
         // GET: CustomerBookings
-        public IActionResult AdminHomePage()
+        public async Task<ActionResult> AdminHomePage(int? id)
         {
-            return View();
+            var admin = await _context.Administrators.FindAsync(id);
+            ViewData["loggedAdminId"] = id;
+            return View(admin);
+        }
+
+        // GET: CustomerBookings
+        public ActionResult OpenCustomerSearchPage(int? id)
+        {
+            return RedirectToAction("AdminSearch", "Customers", new { id = id });
+        }
+
+        // GET: CustomerBookings
+        public ActionResult OpenBookingSearchPage(int? id)
+        {
+            return RedirectToAction("AdminSearch", "Bookings", new { id = id });
+        }
+
+        // GET: CustomerBookings
+        public ActionResult OpenModeratorSearchPage(int? id)
+        {
+            return RedirectToAction("AdminSearch", "Moderators", new { id = id });
         }
 
         // GET: Administrators/Details/5

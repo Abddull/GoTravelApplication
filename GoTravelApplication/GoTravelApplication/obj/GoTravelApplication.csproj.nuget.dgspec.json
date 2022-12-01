@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GoTravel\\repo testing\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj": {}
+    "C:\\GoTravel\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj": {}
   },
   "projects": {
-    "C:\\GoTravel\\repo testing\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj": {
+    "C:\\GoTravel\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GoTravel\\repo testing\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj",
+        "projectUniqueName": "C:\\GoTravel\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj",
         "projectName": "GoTravelApplication",
-        "projectPath": "C:\\GoTravel\\repo testing\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj",
+        "projectPath": "C:\\GoTravel\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj",
         "packagesPath": "C:\\Users\\QuanaFrea\\.nuget\\packages\\",
-        "outputPath": "C:\\GoTravel\\repo testing\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication\\obj\\",
+        "outputPath": "C:\\GoTravel\\GoTravelApplication\\GoTravelApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

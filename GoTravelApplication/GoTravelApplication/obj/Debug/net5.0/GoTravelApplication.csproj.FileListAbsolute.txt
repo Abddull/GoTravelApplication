@@ -396,3 +396,19 @@ C:\GoTravel\repo testing\GoTravelApplication\GoTravelApplication\GoTravelApplica
 C:\GoTravel\repo testing\GoTravelApplication\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\GoTravelApplication.genruntimeconfig.cache
 C:\GoTravel\repo testing\GoTravelApplication\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Receptionists\BookingDetails.cshtml.g.cs
 C:\GoTravel\repo testing\GoTravelApplication\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Receptionists\EditBooking.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Receptionists\BookingDetails.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Receptionists\EditBooking.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Customers\AdminSearch.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Customers\AdminDetails.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Customers\AdminEdit.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\CustomerBookings\AdminDetails.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\CustomerBookings\AdminDelete.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Moderators\AdminSearch.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Moderators\AdminDetails.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Moderators\AdminEdit.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Bookings\AdminSearch.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Bookings\AdminDetails.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Bookings\AdminEdit.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\Bookings\AdminCreate.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\CustomerBookings\AdminCreate.cshtml.g.cs
+C:\GoTravel\GoTravelApplication\GoTravelApplication\obj\Debug\net5.0\Razor\Views\CustomerBookings\AdminEdit.cshtml.g.cs
