@@ -1,0 +1,80 @@
+﻿@model IEnumerable<GoTravelApplication.Model.ModRequest>
+
+@{
+    ViewData["Title"] = "AdminOpen";
+}
+
+<h1>Mod Requests List</h1>
+<form asp-action="AdminOpen" class="text-danger">
+    <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+    <div class="form-group">
+        <label for="statusFilter" class="control-label">Request Status</label>
+        <select name="statusFilter" class="form-control">
+            <option value="" selected disabled hidden>Select One</option>
+            <option value="Unresolved">Unresolved</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Sort" />
+    </div>
+</form>
+
+<h4>Moderator Requests</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Moderator)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Moderator.Password)
+                </td>
+                <td>
+                    <form asp-action="AdminRespond" class="text-danger">
+                        <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+                        <input type="hidden" value="@item.RequestId" name="requestId" />
+                        <div class="form-group">
+                            <input type="submit" value="Respond to Request" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<a asp-action="AdminBack" asp-route-id="@ViewData["loggedAdminId"]">Back to Home</a>

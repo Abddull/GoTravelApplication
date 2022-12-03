@@ -52,22 +52,24 @@ namespace GoTravelApplication.Controllers
             return View(admin);
         }
 
-        // GET: CustomerBookings
         public ActionResult OpenCustomerSearchPage(int? id)
         {
             return RedirectToAction("AdminSearch", "Customers", new { id = id });
         }
 
-        // GET: CustomerBookings
         public ActionResult OpenBookingSearchPage(int? id)
         {
             return RedirectToAction("AdminSearch", "Bookings", new { id = id });
         }
 
-        // GET: CustomerBookings
         public ActionResult OpenModeratorSearchPage(int? id)
         {
             return RedirectToAction("AdminSearch", "Moderators", new { id = id });
+        }
+
+        public ActionResult OpenModeratorRequestPage(int? id)
+        {
+            return RedirectToAction("AdminOpen", "ModRequests", new { id = id });
         }
 
         // GET: Administrators/Details/5

@@ -125,6 +125,12 @@ namespace GoTravelApplication.Controllers
             return RedirectToAction("AdminHomePage", "Administrators", new { id = id });
         }
 
+        // GET: CustomerBookings
+        public ActionResult OpenModeratorRequestPage(int? id)
+        {
+            return RedirectToAction("ModOpen", "ModRequests", new { id = id });
+        }
+
         // GET: Moderators/Details/5
         public async Task<IActionResult> Details(int? id)
         {

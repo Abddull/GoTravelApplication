@@ -1,0 +1,73 @@
+﻿@model IEnumerable<GoTravelApplication.Model.ModRequest>
+
+@{
+    ViewData["Title"] = "ModOpen";
+}
+
+<h1>Mod Requests List</h1>
+
+<form asp-action="ModCreate" class="text-danger">
+    <input type="hidden" value="@ViewData["loggedModId"]" name="id" />
+    <div class="form-group">
+        <input type="submit" value="Create New Request" class="btn btn-primary" />
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Moderator)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Moderator.Password)
+                </td>
+                <td>
+                    @if (Int32.Parse(ViewData["loggedModId"].ToString()) == item.ModeratorId)
+                    {
+                        <form asp-action="ModEdit" class="text-danger">
+                            <input type="hidden" value="@ViewData["loggedModId"]" name="id" />
+                            <input type="hidden" value="@item.RequestId" name="requestId" />
+                            <div class="form-group">
+                                <input type="submit" value="Edit Request" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="ModBack" asp-route-id="@ViewData["loggedModId"]">Back to Home</a>
+

@@ -23,3 +23,12 @@
         <input type="submit" value="Search Moderators" />
     </div>
 </form>
+
+<br /><br />
+
+<form asp-action="OpenModeratorRequestPage" class="text-danger">
+    <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
+    <div class="form-group">
+        <input type="submit" value="See Moderator Requests" />
+    </div>
+</form>
