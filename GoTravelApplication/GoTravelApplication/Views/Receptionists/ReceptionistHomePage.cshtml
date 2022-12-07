@@ -1,9 +1,10 @@
 ﻿@model GoTravelApplication.Model.Receptionist
 
-<h1>Receptionist Home Page</h1>
-<h4>
+<h1>Receptionist Home Page</h1><br />
+<h4 style="text-align: center; margin: auto; color: rebeccapurple; text-size-adjust: 12px">
     Welcome @Model.UserName
 </h4>
+<br />
 
 @{
     var Msg = "";
@@ -12,14 +13,14 @@
             Msg = ViewData["msg"].ToString();
     if (Msg != "")
     {
-        <h5 style="color:red;">@Msg</h5><br>
+    <h5 style="color:red;">@Msg</h5><br>
     }
 }
-<form asp-action="BookingDetails" class="text-danger">
+<form asp-action="BookingDetails" class="text-danger" style="text-align: center">
     <input type="hidden" value="@Model.ReceptionistId" name="id" />
-    <input type="number" min="0" name="bookId" required="required"/>
+    <input type="number" min="0" name="bookId" required="required"/><br /><br />
 
-    <div class="form-group">
+    <div class="form-group" style="text-align: center">
         <input type="submit" value="Search Booking Id" />
     </div>
 </form>
