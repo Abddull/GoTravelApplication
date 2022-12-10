@@ -36,7 +36,7 @@
     <input type="hidden" value="@ViewData["customerId"]" name="custId" />
 
     <div class="form-group">
-        <input type="submit" value="Create Customer Booking" class="btn btn-secondary"/>
+        <input type="submit" value="Create Customer Booking" class="btn btn-primary"/>
     </div>
 </form>
 <h3>All Customer Bookings</h3>
@@ -92,7 +92,7 @@
                         <input type="hidden" value="@item.CustomerBookingId" name="bookingId" />
 
                         <div class="form-group">
-                            <input type="submit" value="View Details" />
+                            <input type="submit" class="btn btn-warning" value="View Details" />
                         </div>
                     </form>
                 </td>
@@ -107,8 +107,8 @@
         <input type="hidden" value="@ViewData["customerId"]" name="custId" />
 
         <div class="form-group">
-            <input type="submit" value="Edit Customer Details" />
+            <input type="submit" class="btn btn-primary" value="Edit Customer Details" />
         </div>
     </form>
-    <a asp-action="AdminSearch" asp-route-id="@ViewData["loggedAdminId"]">Back to List</a>
+    <a asp-action="AdminSearch" asp-route-id="@ViewData["loggedAdminId"]"><div class="btn btn-primary">Back to List</div></a>
 </div>

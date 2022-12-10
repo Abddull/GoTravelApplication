@@ -6,31 +6,31 @@
 </h4>
 
 
-
+<br />
 <form asp-action="OpenCustomerSearchPage" class="text-danger">
     <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
     <div class="form-group">
-        <input type="submit" value="Search Customers" />
+        <input type="submit" class="btn btn-warning btn-center" value="Search Customers" />
     </div>
 </form>
 <form asp-action="OpenBookingSearchPage" class="text-danger">
     <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
     <div class="form-group">
-        <input type="submit" value="Search Bookings" />
+        <input type="submit" class="btn btn-warning" value="Search Bookings" />
     </div>
 </form>
 <form asp-action="OpenModeratorSearchPage" class="text-danger">
     <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
     <div class="form-group">
-        <input type="submit" value="Search Moderators" />
+        <input type="submit" class="btn btn-warning" value="Search Moderators" />
     </div>
 </form>
 
-<br /><br />
+
 
 <form asp-action="OpenModeratorRequestPage" class="text-danger">
     <input type="hidden" value="@ViewData["loggedAdminId"]" name="id" />
     <div class="form-group">
-        <input type="submit" value="See Moderator Requests" />
+        <input type="submit" class="btn btn-warning" value="See Moderator Requests" />
     </div>
 </form>

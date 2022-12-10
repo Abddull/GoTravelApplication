@@ -7,9 +7,9 @@
 <h1>Search Bookings</h1>
 
 <p>
-    <a asp-action="Back" asp-route-id="@ViewData["loggedCustomerId"]">Back To Home Page</a>
+    <a asp-action="Back" asp-route-id="@ViewData["loggedCustomerId"]"><div class="btn btn-secondary">Back To Home Page</div></a>
 </p>
-<form asp-action="Index" class="text-danger">
+<form asp-action="Index" class="text-bold">
     <input type="hidden" value="@ViewData["loggedCustomerId"]" name="id" />
     <div class="form-group">
         <label for="pricelow" class="control-label">Price Floor</label>
@@ -36,7 +36,7 @@
         <input type="date" id="endhigh" class="form-control" name="paraEndHigh" />
     </div>
     <div class="form-group">
-        <input type="submit" value="Sort" />
+        <input type="submit" class="btn btn-warning" value="Sort" />
     </div>
 </form>
 
@@ -87,7 +87,7 @@
                     <input type="hidden" value="@item.BookingId" name="bookId" />
 
                     <div class="form-group">
-                        <input type="submit" value="View Booking" />
+                        <input type="submit" class="btn btn-warning" value="View Booking" />
                     </div>
                 </form>
             </td>

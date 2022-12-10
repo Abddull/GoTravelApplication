@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create"><div class="btn btn-warning">classCreate New</div></a>
 </p>
 <table class="table">
     <thead>
@@ -31,9 +31,9 @@
                 @Html.DisplayFor(modelItem => item.Password)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.CustomerId"><div class="btn btn-warning">Edit</div></a> |
+                    <a asp-action="Details" asp-route-id="@item.CustomerId"><div class="btn btn-warning">Details</div></a> |
+                <a asp-action="Delete" asp-route-id="@item.CustomerId"><div class="btn btn-danger">classDelete</div></a>
             </td>
         </tr>
 }

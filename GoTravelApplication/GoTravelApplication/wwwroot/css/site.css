@@ -10,11 +10,11 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+  color: #ffff;
 }
 
 .btn-primary {
-  color: #fff;
+  color: #e5e5e5;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
@@ -80,4 +80,19 @@ HomePage {
 
 h2 {
     color: rebeccapurple;
+}
+
+table {
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 16px;
+}
+
+tr {
+    background-color: cadetblue
 }
