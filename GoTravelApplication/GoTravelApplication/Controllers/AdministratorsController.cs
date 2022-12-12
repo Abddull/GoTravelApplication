@@ -25,6 +25,11 @@ namespace GoTravelApplication.Controllers
             return View();
         }
 
+        /// <summary>
+        /// handles login functionality for administrators
+        /// </summary>
+        /// <param name="administrator">administrator object with username and password fields filled</param>
+        /// <returns>if login succeed, id for the logged administrator is returned</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("AdministratorId,UserName,Password")] Administrator administrator)
@@ -44,7 +49,11 @@ namespace GoTravelApplication.Controllers
             return RedirectToAction("AdminHomePage", new { id = loggedAdmin.AdminId });
         }
 
-        // GET: CustomerBookings
+        /// <summary>
+        /// Loads administrator home page
+        /// </summary>
+        /// <param name="id">logged admins home page</param>
+        /// <returns>the administrator home page</returns>
         public async Task<ActionResult> AdminHomePage(int? id)
         {
             var admin = await _context.Administrators.FindAsync(id);

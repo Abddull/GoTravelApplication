@@ -18,22 +18,11 @@ namespace GoTravelApplication.Controllers
             _context = context;
         }
 
-        /*// GET: CustomerBookings
-        public async Task<IActionResult> CustomerHomePage(int customerId)
-        {
-            var goTravelContext = _context.CustomerBookings.Include(c => c.Booking).Include(c => c.Customer);
-            var customerBookings = await goTravelContext.ToListAsync();
-            var curBookings = new List<CustomerBooking>();
-            foreach (CustomerBooking cur in customerBookings)
-            {
-                if (cur.CustomerId == customerId)
-                    curBookings.Add(cur);
-            }
-            ViewData["loggedCustomerId"] = customerId;
-            return View(curBookings);
-        }*/
-
-        // GET: CustomerBookings
+        /// <summary>
+        /// Opens customer home page with all their bookings
+        /// </summary>
+        /// <param name="id">logged in customers id</param>
+        /// <returns>opens customer home page with their bookings</returns>
         public async Task<IActionResult> CustomerHomePage(int? id)
         {
             var goTravelContext = _context.CustomerBookings.Include(c => c.Booking).Include(c => c.Customer);
@@ -63,7 +52,12 @@ namespace GoTravelApplication.Controllers
             return RedirectToAction("AdminDetails", "Customers", new { id = id, custId = custId });
         }
 
-        // GET: CustomerBookings
+        /// <summary>
+        /// Opens page to view customer booking details for admin
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="bookingId">selected customer booking id</param>
+        /// <returns>Details page</returns>
         public async Task<IActionResult> AdminDetails(int? id, int? bookingId)
         {
             if (bookingId == null)
@@ -83,6 +77,12 @@ namespace GoTravelApplication.Controllers
             return View(customerBooking);
         }
 
+        /// <summary>
+        /// Opens page to create customer booking. used by admin 
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="custId">selected customer to give the booking</param>
+        /// <returns>create page</returns>
         public IActionResult AdminCreate(int? id, int? custId)
         {
             ViewData["loggedAdminId"] = id;
@@ -92,6 +92,13 @@ namespace GoTravelApplication.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Creates the customer booking by admin
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="custId">customerid of customer to get the booking</param>
+        /// <param name="customerBooking">customer booking to be made</param>
+        /// <returns>Creates customer booking</returns>
         public async Task<IActionResult> DoAdminCreate(int? id, int? custId, [Bind("CustomerBookingId,PurchaseDate,Status,BookingId,CustomerId")] CustomerBooking customerBooking)
         {
             if (ModelState.IsValid)
@@ -105,6 +112,12 @@ namespace GoTravelApplication.Controllers
             return View(customerBooking);
         }
 
+        /// <summary>
+        /// Opens page to edit customer booking. used by admin 
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="bookingId">selected customer booking id</param>
+        /// <returns>edit page</returns>
         public async Task<IActionResult> AdminEdit(int? id, int? bookingId)
         {
             var customerBooking = await _context.CustomerBookings.FindAsync(bookingId);
@@ -115,6 +128,12 @@ namespace GoTravelApplication.Controllers
             return View(customerBooking);
         }
 
+        /// <summary>
+        /// Edits customers booking. Used by admin
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="customerBooking">updated customerbooking</param>
+        /// <returns>Updates customer booking</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DoAdminEdit(int? id, [Bind("CustomerBookingId,PurchaseDate,Status,BookingId,CustomerId")] CustomerBooking customerBooking)
@@ -144,6 +163,12 @@ namespace GoTravelApplication.Controllers
             return RedirectToAction("BackToAdmin", new { id = id, custId = customerBooking.CustomerId });
         }
 
+        /// <summary>
+        /// Opens page to delete customerbooking. Used by admin
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="bookingId">id of booking to be deleted</param>
+        /// <returns>delete page</returns>
         public async Task<IActionResult> AdminDelete(int? id, int? bookingId)
         {
             if (bookingId == null)
@@ -164,6 +189,12 @@ namespace GoTravelApplication.Controllers
             return View(customerBooking);
         }
 
+        /// <summary>
+        /// Deletes the given customer booking. Used by admin
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="bookingId">id of booking to be deleted</param>
+        /// <returns>returns to customer details page</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AdminDeleteConfirmed(int id, int bookingId)

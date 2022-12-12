@@ -18,18 +18,33 @@ namespace GoTravelApplication.Controllers
             _context = context;
         }
 
-        // GET: ModRequests
+        /// <summary>
+        /// Shows all moderator requests
+        /// </summary>
+        /// <returns>Opens page with moderator requests</returns>
         public async Task<IActionResult> Index()
         {
             var goTravelContext = _context.ModRequests.Include(m => m.Moderator);
             return View(await goTravelContext.ToListAsync());
         }
 
+        /// <summary>
+        /// Returns admin to their home page
+        /// </summary>
+        /// <param name="id">admin id</param>
+        /// <returns>admin home page</returns>
         public ActionResult AdminBack(int? id)
         {
             return RedirectToAction("AdminHomePage", "Administrators", new { id = id });
         }
 
+
+        /// <summary>
+        /// Opens page for moderators to search moderator requests for admin
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="statusFilter">status parameter for search filtering</param>
+        /// <returns>Opens page with all matching moderator requests</returns>
         public async Task<IActionResult> AdminOpen(int? id, string statusFilter)
         {
             var goTravelContext = _context.ModRequests.Include(m => m.Moderator);
@@ -44,6 +59,12 @@ namespace GoTravelApplication.Controllers
             return View(requests);
         }
 
+        /// <summary>
+        /// Open page to Create a adminresponse 
+        /// </summary>
+        /// <param name="id">logged in admin id</param>
+        /// <param name="requestId"> selected moderator request id</param>
+        /// <returns>Opens admin respond page</returns>
         public async Task<IActionResult> AdminRespond(int? id, int requestId)
         {
             var modRequest = await _context.ModRequests.FindAsync(requestId);
@@ -57,6 +78,13 @@ namespace GoTravelApplication.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Creates admin response and changes status of request to In Progress
+        /// </summary>
+        /// <param name="id"><logged in admin id/param>
+        /// <param name="requestId">selected moderator request id</param>
+        /// <param name="adminRequest">adminresponse to be made</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateAdminResponse(int? id, int? requestId, [Bind("ResponseId,Title,Description,ResponseTime,ModeratorId,AdminId")] AdminResponse adminRequest)
@@ -80,6 +108,12 @@ namespace GoTravelApplication.Controllers
             return RedirectToAction("ModeratorHomePage", "Moderators", new { id = id });
         }
 
+        /// <summary>
+        /// Opens page for moderators to search moderator requests for moderator
+        /// </summary>
+        /// <param name="id">logged in moderator id</param>
+        /// <param name="statusFilter">status parameter for search filtering</param>
+        /// <returns>Opens page with all matching moderator requests</returns>
         public async Task<IActionResult> ModOpen(int? id)
         {
             var goTravelContext = _context.ModRequests.Include(m => m.Moderator);
@@ -87,12 +121,22 @@ namespace GoTravelApplication.Controllers
             return View(await goTravelContext.ToListAsync());
         }
 
+        /// <summary>
+        /// Opens page to create mod request
+        /// </summary>
+        /// <param name="id">logged in moderator id</param>
+        /// <returns>Opens page to create moderator request</returns>
         public IActionResult ModCreate(int? id)
         {
             ViewData["loggedModId"] = id;
             return View();
         }
 
+        /// <summary>
+        /// Creates moderator request
+        /// </summary>
+        /// <param name="modRequest">mod request to be made</param>
+        /// <returns>Creates mod request</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DoModCreate([Bind("RequestId,Title,Description,Status,RequestTime,ModeratorId")] ModRequest modRequest)
@@ -109,7 +153,12 @@ namespace GoTravelApplication.Controllers
             return View(modRequest);
         }
 
-        // GET: ModRequests
+        /// <summary>
+        /// Opens page to edit mod request
+        /// </summary>
+        /// <param name="id">logged in mods id</param>
+        /// <param name="requestId">request to be updated id</param>
+        /// <returns>page to edit request</returns>
         public async Task<IActionResult> ModEdit(int? id, int? requestId)
         {
             var modRequest = await _context.ModRequests.FindAsync(requestId);
@@ -121,6 +170,12 @@ namespace GoTravelApplication.Controllers
             return View(modRequest);
         }
 
+        /// <summary>
+        /// Edits mod request
+        /// </summary>
+        /// <param name="id">logged in mods id</param>
+        /// <param name="modRequest">mod request to be updated</param>
+        /// <returns>Edits existing mod request</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DoModEdit(int id, [Bind("RequestId,Title,Description,Status,RequestTime,ModeratorId")] ModRequest modRequest)

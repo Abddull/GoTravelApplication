@@ -25,6 +25,11 @@ namespace GoTravelApplication.Controllers
             return View();
         }
 
+        /// <summary>
+        /// handles login functionality for moderators
+        /// </summary>
+        /// <param name="moderator">moderator object with username and password fields filled</param>
+        /// <returns>if login succeed, id for the logged moderator is returned</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("ModeratorId,UserName,Password")] Moderator moderator)
@@ -44,6 +49,11 @@ namespace GoTravelApplication.Controllers
             return RedirectToAction("ModeratorHomePage", new { id = loggedMod.ModeratorId });
         }
 
+        /// <summary>
+        /// Loads moderator home page
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>the moderator home page</returns>
         public async Task<ActionResult> ModeratorHomePage(int id)
         {
             var mod = await _context.Moderators.FindAsync(id);
@@ -51,6 +61,13 @@ namespace GoTravelApplication.Controllers
             return View(mod);
         }
 
+        /// <summary>
+        /// Page where admins can search and view all moderators
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="modId">parameter to search with moderator id</param>
+        /// <param name="username">parameter to search with moderator username</param>
+        /// <returns>page with all matching moderators</returns>
         public async Task<ActionResult> AdminSearch(int? id, int? modId, string username)
         {
             var moderators = await _context.Moderators.ToListAsync();
@@ -67,6 +84,12 @@ namespace GoTravelApplication.Controllers
             return View(moderators);
         }
 
+        /// <summary>
+        /// Opens page for admins to view selected moderator details
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="modId">moderator to be viewed</param>
+        /// <returns>page with moderator details</returns>
         public async Task<ActionResult> AdminDetails(int? id, int? modId)
         {
             var moderator = await _context.Moderators.FindAsync(modId);
@@ -74,6 +97,12 @@ namespace GoTravelApplication.Controllers
             return View(moderator);
         }
 
+        /// <summary>
+        /// Opens page to edit selected moderator
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="modId">moderator to be edited</param>
+        /// <returns>page to edit moderator details</returns>
         public async Task<ActionResult> AdminEdit(int? id, int? modId)
         {
             if (modId == null)
@@ -90,6 +119,12 @@ namespace GoTravelApplication.Controllers
             return View(moderator);
         }
 
+        /// <summary>
+        /// Edits selected moderator
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="moderator">moderator object to use for update</param>
+        /// <returns>updates moderator and returns to search page</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DoEdit(int id, [Bind("ModeratorId,UserName,Password")] Moderator moderator)
@@ -119,19 +154,22 @@ namespace GoTravelApplication.Controllers
             return View(moderator);
         }
 
-        // GET: CustomerBookings
+        /// <summary>
+        /// Returns admin to the admin home page
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <returns>admin home page</returns>
         public ActionResult AdminBack(int? id)
         {
             return RedirectToAction("AdminHomePage", "Administrators", new { id = id });
         }
 
-        // GET: CustomerBookings
+
         public ActionResult OpenModeratorRequestPage(int? id)
         {
             return RedirectToAction("ModOpen", "ModRequests", new { id = id });
         }
 
-        // GET: CustomerBookings
         public ActionResult OpenAdminResponsePage(int? id)
         {
             return RedirectToAction("Index", "AdminResponses", new { id = id });

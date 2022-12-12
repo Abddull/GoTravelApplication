@@ -18,7 +18,11 @@ namespace GoTravelApplication.Controllers
             _context = context;
         }
 
-        // GET: AdminResponses
+        /// <summary>
+        /// Allows to view all of logged in moderators, admin responses
+        /// </summary>
+        /// <param name="id">logged in moderator id</param>
+        /// <returns>opens page with list of responses</returns>
         public async Task<IActionResult> Index(int? id)
         {
             var goTravelContext = _context.AdminResponses.Include(a => a.Admin).Include(a => a.Moderator);

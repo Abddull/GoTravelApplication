@@ -25,6 +25,11 @@ namespace GoTravelApplication.Controllers
             return View();
         }
 
+        /// <summary>
+        /// handles login functionality for receptionists
+        /// </summary>
+        /// <param name="receptionist">receptionist object with username and password fields filled</param>
+        /// <returns>if login succeed, id for the logged receptionist is returned</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("ReceptionistId,UserName,Password")] Receptionist receptionist)
@@ -43,7 +48,12 @@ namespace GoTravelApplication.Controllers
             return RedirectToAction("ReceptionistHomePage", new { id = loggedReceptionist.ReceptionistId });
         }
 
-        // GET: CustomerBookings
+        /// <summary>
+        /// Loads receptionist home page
+        /// </summary>
+        /// <param name="id">logged in receptionists id</param>
+        /// <param name="msg">error msg to show if necessary</param>
+        /// <returns>the receptionist home page</returns>
         public async Task<IActionResult> ReceptionistHomePage(int? id, string msg)
         {
             var receptionist = await _context.Receptionists.FindAsync(id);
@@ -52,25 +62,12 @@ namespace GoTravelApplication.Controllers
             return View(receptionist);
         }
 
-        public async Task<IActionResult> SearchPage(int? id, int paraId)
-        {
-            var bookings = await _context.Bookings.ToListAsync();
-            if (paraId != 0)
-            {
-                foreach (Booking book in await _context.Bookings.ToListAsync())
-                {
-                    if (paraId != 0)
-                    {
-                        if (book.Price == paraId)
-                            bookings.Remove(book);
-                    }
-                }
-            }
-            ViewData["loggedCustomerId"] = id;
-            return View(bookings);
-        }
-
-
+        /// <summary>
+        /// Opens details page for selected customer booking
+        /// </summary>
+        /// <param name="id">logged in receptionists id</param>
+        /// <param name="bookId">customerbooking id</param>
+        /// <returns>Page with customerbooking details</returns>
         public async Task<IActionResult> BookingDetails(int? id, int? bookId)
         {
             if (id == null)
@@ -87,7 +84,12 @@ namespace GoTravelApplication.Controllers
             return View(booking);
         }
 
-
+        /// <summary>
+        /// Opens page to edit customerbooking
+        /// </summary>
+        /// <param name="id">logged in receptionists id</param>
+        /// <param name="bookId">customerbooking id</param>
+        /// <returns>Page to edit customerbooking details</returns>
         public async Task<IActionResult> EditBooking(int? id, int? bookId)
         {
             if (bookId == null)
@@ -105,6 +107,13 @@ namespace GoTravelApplication.Controllers
         }
 
 
+        /// <summary>
+        /// Edits selected customerbookings status
+        /// </summary>
+        /// <param name="id">logged in receptionists id</param>
+        /// <param name="bookId">customerbooking id</param>
+        /// <param name="status">new status of customerbooking</param>
+        /// <returns>Edits customerbooking status then opens home page</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditBookingDetails(int? id, int? bookId, string status)

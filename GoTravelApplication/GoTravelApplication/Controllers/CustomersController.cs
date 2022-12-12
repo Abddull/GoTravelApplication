@@ -26,6 +26,11 @@ namespace GoTravelApplication.Controllers
             return View();
         }
 
+        /// <summary>
+        /// handles login functionality for customers
+        /// </summary>
+        /// <param name="customer">customer object with username and password fields filled</param>
+        /// <returns>if login succeed, id for the logged customer is returned</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("CustomerId,UserName,Password")] Customer customer)
@@ -44,8 +49,12 @@ namespace GoTravelApplication.Controllers
             return RedirectToAction("CustomerHomePage", "CustomerBookings", new { id = loggedCustomer.CustomerId });
         }
 
-        // GET: Customers
-        public async Task<IActionResult> CustomerHomePage()
+        /// <summary>
+        /// Loads customer home page
+        /// </summary>
+        /// <param name="id">logged in customers id</param>
+        /// <returns>Customer Home Page</returns>
+        public async Task<IActionResult> CustomerHomePage(int? id)
         {
             var customerBookings = await _context.CustomerBookings.ToListAsync();
             var curBookings = new List<CustomerBooking>();
@@ -54,9 +63,17 @@ namespace GoTravelApplication.Controllers
                 if (cur.CustomerId == loggedCustomer.CustomerId)
                     curBookings.Add(cur);
             }
+            ViewData["loggedAdminId"] = id;
             return View(curBookings);
         }
 
+        /// <summary>
+        /// Page where admins can search and view all customer
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="custId">parameter to search with customer id</param>
+        /// <param name="username">parameter to search with customer username</param>
+        /// <returns>page with all matching customers</returns>
         public async Task<ActionResult> AdminSearch(int? id, int? custId, string username)
         {
             var customers = await _context.Customers.ToListAsync();
@@ -73,6 +90,12 @@ namespace GoTravelApplication.Controllers
             return View(customers);
         }
 
+        /// <summary>
+        /// Opens page for admins to view selected customer details
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="custId">customer to be viewed</param>
+        /// <returns>page with customer details</returns>
         public async Task<ActionResult> AdminDetails(int? id, int? custId)
         {
             var goTravelContext = _context.CustomerBookings.Include(c => c.Booking).Include(c => c.Customer);
@@ -90,11 +113,23 @@ namespace GoTravelApplication.Controllers
             return View(customerBookings);
         }
 
+        /// <summary>
+        /// Opens page to view customer booking details
+        /// </summary>
+        /// <param name="id">ogged in admins id</param>
+        /// <param name="bookingId">selected customer booking id</param>
+        /// <returns>Customerbooking details page</returns>
         public ActionResult AdminBookDetails(int? id, int? bookingId)
         {
             return RedirectToAction("AdminDetails", "CustomerBookings", new { id = id , bookingId = bookingId });
         }
 
+        /// <summary>
+        /// Opens page to edit selected customer
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="custId">customer to be edited</param>
+        /// <returns>customer profile edit page</returns>
         public async Task<ActionResult> AdminEdit(int? id, int? custId)
         {
             if (custId == null)
@@ -111,6 +146,12 @@ namespace GoTravelApplication.Controllers
             return View(customer);
         }
 
+        /// <summary>
+        /// Edits selected customer
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="customer">customer object to use for update</param>
+        /// <returns>updates customer and returns to search page</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DoEdit(int id, [Bind("CustomerId,UserName,Password")] Customer customer)
@@ -140,13 +181,22 @@ namespace GoTravelApplication.Controllers
             return View(customer);
         }
 
-        // GET: CustomerBookings
+        /// <summary>
+        /// Returns admin to the admin home page
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <returns>admin home page</returns>
         public ActionResult AdminBack(int? id)
         {
             return RedirectToAction("AdminHomePage", "Administrators", new { id = id });
         }
 
-        // GET: CustomerBookings
+        /// <summary>
+        /// Opens create page for customerbookings
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="custId">selected customers id</param>
+        /// <returns>Create customerbooking page</returns>
         public ActionResult AdminCreate(int? id, int? custId)
         {
             return RedirectToAction("AdminCreate", "CustomerBookings", new { id = id, custId = custId });

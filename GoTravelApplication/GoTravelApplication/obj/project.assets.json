@@ -7472,19 +7472,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Abdul\\.nuget\\packages\\": {}
+    "C:\\Users\\QuanaFrea\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Abdul\\Documents\\GitHub\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj",
+      "projectUniqueName": "C:\\GoTravel\\repo testing\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj",
       "projectName": "GoTravelApplication",
-      "projectPath": "C:\\Users\\Abdul\\Documents\\GitHub\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj",
-      "packagesPath": "C:\\Users\\Abdul\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Abdul\\Documents\\GitHub\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication\\obj\\",
+      "projectPath": "C:\\GoTravel\\repo testing\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication.csproj",
+      "packagesPath": "C:\\Users\\QuanaFrea\\.nuget\\packages\\",
+      "outputPath": "C:\\GoTravel\\repo testing\\GoTravelApplication\\GoTravelApplication\\GoTravelApplication\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Abdul\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\QuanaFrea\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7555,24 +7560,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.17, 5.0.17]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -7581,7 +7568,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.414\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }

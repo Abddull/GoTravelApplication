@@ -1,0 +1,405 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GoTravelApplication</name>
+    </assembly>
+    <members>
+        <member name="M:GoTravelApplication.Controllers.AdministratorsController.Login(GoTravelApplication.Model.Administrator)">
+            <summary>
+            handles login functionality for administrators
+            </summary>
+            <param name="administrator">administrator object with username and password fields filled</param>
+            <returns>if login succeed, id for the logged administrator is returned</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.AdministratorsController.AdminHomePage(System.Nullable{System.Int32})">
+            <summary>
+            Loads administrator home page
+            </summary>
+            <param name="id">logged admins home page</param>
+            <returns>the administrator home page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.AdminResponsesController.Index(System.Nullable{System.Int32})">
+            <summary>
+            Allows to view all of logged in moderators, admin responses
+            </summary>
+            <param name="id">logged in moderator id</param>
+            <returns>opens page with list of responses</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.BookingsController.Index(System.Nullable{System.Int32},System.Double,System.Double,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Allows to search through all existing bookings
+            </summary>
+            <param name="id">logged in customers Id</param>
+            <param name="paraPriceLow">price floor filter</param>
+            <param name="paraPriceHigh">price ceiling filter</param>
+            <param name="paraStartLow">start date floor filter</param>
+            <param name="paraStartHigh">start date ceiling filter</param>
+            <param name="paraEndLow">end date floor filter</param>
+            <param name="paraEndHigh">end date ceiling filter</param>
+            <returns>All bookings that match parameters</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.BookingsController.AddToCart(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Adds selected booking to cart
+            </summary>
+            <param name="id">logged in customers id</param>
+            <param name="bookId">booking id to be added to cart</param>
+            <returns>Booking search page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.BookingsController.AdminSearch(System.Nullable{System.Int32},System.Double,System.Double,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Allows to search through all existing bookings. Used by admin
+            </summary>
+            <param name="id">logged in admins Id</param>
+            <param name="paraPriceLow">price floor filter</param>
+            <param name="paraPriceHigh">price ceiling filter</param>
+            <param name="paraStartLow">start date floor filter</param>
+            <param name="paraStartHigh">start date ceiling filter</param>
+            <param name="paraEndLow">end date floor filter</param>
+            <param name="paraEndHigh">end date ceiling filter</param>
+            <returns>All bookings that match parameters</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.BookingsController.AdminCreate(System.Nullable{System.Int32})">
+            <summary>
+            Opens page to create new booking
+            </summary>
+            <param name="id">logged in admins id</param>
+            <returns>create page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.BookingsController.AdminCreate(System.Nullable{System.Int32},GoTravelApplication.Model.Booking)">
+            <summary>
+            Creates new booking
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="booking">booking to be created</param>
+            <returns>admins booking search page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.BookingsController.AdminDetails(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            opens bookings details page. Used by admin
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="bookId">booking to be viewed id</param>
+            <returns>details page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.BookingsController.AdminEdit(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens edit page for booings. Used by admins
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="bookId">bookingid to be edited</param>
+            <returns>edit page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.BookingsController.DoEdit(System.Int32,GoTravelApplication.Model.Booking)">
+            <summary>
+            Edits existing booking
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="booking">booking to be saved</param>
+            <returns>admindetails page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CartBookingsController.Checkout(System.Nullable{System.Int32})">
+            <summary>
+            Checks out cart and creates customerbookings
+            </summary>
+            <param name="id">logged in customers id</param>
+            <returns>Customer Home page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomerBookingsController.CustomerHomePage(System.Nullable{System.Int32})">
+            <summary>
+            Opens customer home page with all their bookings
+            </summary>
+            <param name="id">logged in customers id</param>
+            <returns>opens customer home page with their bookings</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomerBookingsController.AdminDetails(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens page to view customer booking details for admin
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="bookingId">selected customer booking id</param>
+            <returns>Details page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomerBookingsController.AdminCreate(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens page to create customer booking. used by admin 
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="custId">selected customer to give the booking</param>
+            <returns>create page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomerBookingsController.DoAdminCreate(System.Nullable{System.Int32},System.Nullable{System.Int32},GoTravelApplication.Model.CustomerBooking)">
+            <summary>
+            Creates the customer booking by admin
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="custId">customerid of customer to get the booking</param>
+            <param name="customerBooking">customer booking to be made</param>
+            <returns>Creates customer booking</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomerBookingsController.AdminEdit(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens page to edit customer booking. used by admin 
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="bookingId">selected customer booking id</param>
+            <returns>edit page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomerBookingsController.DoAdminEdit(System.Nullable{System.Int32},GoTravelApplication.Model.CustomerBooking)">
+            <summary>
+            Edits customers booking. Used by admin
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="customerBooking">updated customerbooking</param>
+            <returns>Updates customer booking</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomerBookingsController.AdminDelete(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens page to delete customerbooking. Used by admin
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="bookingId">id of booking to be deleted</param>
+            <returns>delete page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomerBookingsController.AdminDeleteConfirmed(System.Int32,System.Int32)">
+            <summary>
+            Deletes the given customer booking. Used by admin
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="bookingId">id of booking to be deleted</param>
+            <returns>returns to customer details page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomersController.Login(GoTravelApplication.Model.Customer)">
+            <summary>
+            handles login functionality for customers
+            </summary>
+            <param name="customer">customer object with username and password fields filled</param>
+            <returns>if login succeed, id for the logged customer is returned</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomersController.CustomerHomePage(System.Nullable{System.Int32})">
+            <summary>
+            Loads customer home page
+            </summary>
+            <param name="id">logged in customers id</param>
+            <returns>Customer Home Page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomersController.AdminSearch(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            Page where admins can search and view all customer
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="custId">parameter to search with customer id</param>
+            <param name="username">parameter to search with customer username</param>
+            <returns>page with all matching customers</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomersController.AdminDetails(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens page for admins to view selected customer details
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="custId">customer to be viewed</param>
+            <returns>page with customer details</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomersController.AdminBookDetails(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens page to view customer booking details
+            </summary>
+            <param name="id">ogged in admins id</param>
+            <param name="bookingId">selected customer booking id</param>
+            <returns>Customerbooking details page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomersController.AdminEdit(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens page to edit selected customer
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="custId">customer to be edited</param>
+            <returns>customer profile edit page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomersController.DoEdit(System.Int32,GoTravelApplication.Model.Customer)">
+            <summary>
+            Edits selected customer
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="customer">customer object to use for update</param>
+            <returns>updates customer and returns to search page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomersController.AdminBack(System.Nullable{System.Int32})">
+            <summary>
+            Returns admin to the admin home page
+            </summary>
+            <param name="id">logged in admins id</param>
+            <returns>admin home page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.CustomersController.AdminCreate(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens create page for customerbookings
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="custId">selected customers id</param>
+            <returns>Create customerbooking page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModeratorsController.Login(GoTravelApplication.Model.Moderator)">
+            <summary>
+            handles login functionality for moderators
+            </summary>
+            <param name="moderator">moderator object with username and password fields filled</param>
+            <returns>if login succeed, id for the logged moderator is returned</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModeratorsController.ModeratorHomePage(System.Int32)">
+            <summary>
+            Loads moderator home page
+            </summary>
+            <param name="id"></param>
+            <returns>the moderator home page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModeratorsController.AdminSearch(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            Page where admins can search and view all moderators
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="modId">parameter to search with moderator id</param>
+            <param name="username">parameter to search with moderator username</param>
+            <returns>page with all matching moderators</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModeratorsController.AdminDetails(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens page for admins to view selected moderator details
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="modId">moderator to be viewed</param>
+            <returns>page with moderator details</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModeratorsController.AdminEdit(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens page to edit selected moderator
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="modId">moderator to be edited</param>
+            <returns>page to edit moderator details</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModeratorsController.DoEdit(System.Int32,GoTravelApplication.Model.Moderator)">
+            <summary>
+            Edits selected moderator
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="moderator">moderator object to use for update</param>
+            <returns>updates moderator and returns to search page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModeratorsController.AdminBack(System.Nullable{System.Int32})">
+            <summary>
+            Returns admin to the admin home page
+            </summary>
+            <param name="id">logged in admins id</param>
+            <returns>admin home page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModRequestsController.Index">
+            <summary>
+            Shows all moderator requests
+            </summary>
+            <returns>Opens page with moderator requests</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModRequestsController.AdminBack(System.Nullable{System.Int32})">
+            <summary>
+            Returns admin to their home page
+            </summary>
+            <param name="id">admin id</param>
+            <returns>admin home page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModRequestsController.AdminOpen(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Opens page for moderators to search moderator requests for admin
+            </summary>
+            <param name="id">logged in admins id</param>
+            <param name="statusFilter">status parameter for search filtering</param>
+            <returns>Opens page with all matching moderator requests</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModRequestsController.AdminRespond(System.Nullable{System.Int32},System.Int32)">
+            <summary>
+            Open page to Create a adminresponse 
+            </summary>
+            <param name="id">logged in admin id</param>
+            <param name="requestId"> selected moderator request id</param>
+            <returns>Opens admin respond page</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:GoTravelApplication.Controllers.ModRequestsController.CreateAdminResponse(System.Nullable{System.Int32},System.Nullable{System.Int32},GoTravelApplication.Model.AdminResponse)" -->
+        <member name="M:GoTravelApplication.Controllers.ModRequestsController.ModOpen(System.Nullable{System.Int32})">
+            <summary>
+            Opens page for moderators to search moderator requests for moderator
+            </summary>
+            <param name="id">logged in moderator id</param>
+            <param name="statusFilter">status parameter for search filtering</param>
+            <returns>Opens page with all matching moderator requests</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModRequestsController.ModCreate(System.Nullable{System.Int32})">
+            <summary>
+            Opens page to create mod request
+            </summary>
+            <param name="id">logged in moderator id</param>
+            <returns>Opens page to create moderator request</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModRequestsController.DoModCreate(GoTravelApplication.Model.ModRequest)">
+            <summary>
+            Creates moderator request
+            </summary>
+            <param name="modRequest">mod request to be made</param>
+            <returns>Creates mod request</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModRequestsController.ModEdit(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens page to edit mod request
+            </summary>
+            <param name="id">logged in mods id</param>
+            <param name="requestId">request to be updated id</param>
+            <returns>page to edit request</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ModRequestsController.DoModEdit(System.Int32,GoTravelApplication.Model.ModRequest)">
+            <summary>
+            Edits mod request
+            </summary>
+            <param name="id">logged in mods id</param>
+            <param name="modRequest">mod request to be updated</param>
+            <returns>Edits existing mod request</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ReceptionistsController.Login(GoTravelApplication.Model.Receptionist)">
+            <summary>
+            handles login functionality for receptionists
+            </summary>
+            <param name="receptionist">receptionist object with username and password fields filled</param>
+            <returns>if login succeed, id for the logged receptionist is returned</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ReceptionistsController.ReceptionistHomePage(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Loads receptionist home page
+            </summary>
+            <param name="id">logged in receptionists id</param>
+            <param name="msg">error msg to show if necessary</param>
+            <returns>the receptionist home page</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ReceptionistsController.BookingDetails(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens details page for selected customer booking
+            </summary>
+            <param name="id">logged in receptionists id</param>
+            <param name="bookId">customerbooking id</param>
+            <returns>Page with customerbooking details</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ReceptionistsController.EditBooking(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Opens page to edit customerbooking
+            </summary>
+            <param name="id">logged in receptionists id</param>
+            <param name="bookId">customerbooking id</param>
+            <returns>Page to edit customerbooking details</returns>
+        </member>
+        <member name="M:GoTravelApplication.Controllers.ReceptionistsController.EditBookingDetails(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+            <summary>
+            Edits selected customerbookings status
+            </summary>
+            <param name="id">logged in receptionists id</param>
+            <param name="bookId">customerbooking id</param>
+            <param name="status">new status of customerbooking</param>
+            <returns>Edits customerbooking status then opens home page</returns>
+        </member>
+    </members>
+</doc>

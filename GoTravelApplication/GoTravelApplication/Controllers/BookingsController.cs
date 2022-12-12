@@ -18,7 +18,17 @@ namespace GoTravelApplication.Controllers
             _context = context;
         }
 
-        // GET: Bookings
+        /// <summary>
+        /// Allows to search through all existing bookings
+        /// </summary>
+        /// <param name="id">logged in customers Id</param>
+        /// <param name="paraPriceLow">price floor filter</param>
+        /// <param name="paraPriceHigh">price ceiling filter</param>
+        /// <param name="paraStartLow">start date floor filter</param>
+        /// <param name="paraStartHigh">start date ceiling filter</param>
+        /// <param name="paraEndLow">end date floor filter</param>
+        /// <param name="paraEndHigh">end date ceiling filter</param>
+        /// <returns>All bookings that match parameters</returns>
         public async Task<IActionResult> Index(int? id, double paraPriceLow, double paraPriceHigh, DateTime? paraStartLow, DateTime? paraStartHigh, DateTime? paraEndLow, DateTime? paraEndHigh)
         {
             var bookings = await _context.Bookings.ToListAsync();
@@ -62,6 +72,12 @@ namespace GoTravelApplication.Controllers
             return View(bookings);
         }
 
+        /// <summary>
+        /// Adds selected booking to cart
+        /// </summary>
+        /// <param name="id">logged in customers id</param>
+        /// <param name="bookId">booking id to be added to cart</param>
+        /// <returns>Booking search page</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddToCart(int? id, int? bookId)
@@ -82,7 +98,17 @@ namespace GoTravelApplication.Controllers
             return RedirectToAction("CustomerHomePage", "CustomerBookings", new { id = id });
         }
 
-        // GET: Bookings
+        /// <summary>
+        /// Allows to search through all existing bookings. Used by admin
+        /// </summary>
+        /// <param name="id">logged in admins Id</param>
+        /// <param name="paraPriceLow">price floor filter</param>
+        /// <param name="paraPriceHigh">price ceiling filter</param>
+        /// <param name="paraStartLow">start date floor filter</param>
+        /// <param name="paraStartHigh">start date ceiling filter</param>
+        /// <param name="paraEndLow">end date floor filter</param>
+        /// <param name="paraEndHigh">end date ceiling filter</param>
+        /// <returns>All bookings that match parameters</returns>
         public async Task<IActionResult> AdminSearch(int? id, double paraPriceLow, double paraPriceHigh, DateTime? paraStartLow, DateTime? paraStartHigh, DateTime? paraEndLow, DateTime? paraEndHigh)
         {
             var bookings = await _context.Bookings.ToListAsync();
@@ -126,12 +152,23 @@ namespace GoTravelApplication.Controllers
             return View(bookings);
         }
 
+        /// <summary>
+        /// Opens page to create new booking
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <returns>create page</returns>
         public IActionResult AdminCreate(int? id)
         {
             ViewData["loggedAdminId"] = id;
             return View();
         }
 
+        /// <summary>
+        /// Creates new booking
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="booking">booking to be created</param>
+        /// <returns>admins booking search page</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AdminCreate(int? id, [Bind("BookingId,Title,Description,Price,StartDate,EndDate")] Booking booking)
@@ -146,6 +183,12 @@ namespace GoTravelApplication.Controllers
             return View(booking);
         }
 
+        /// <summary>
+        /// opens bookings details page. Used by admin
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="bookId">booking to be viewed id</param>
+        /// <returns>details page</returns>
         public async Task<ActionResult> AdminDetails(int? id, int? bookId)
         {
             var booking = await _context.Bookings.FindAsync(bookId);
@@ -153,6 +196,12 @@ namespace GoTravelApplication.Controllers
             return View(booking);
         }
 
+        /// <summary>
+        /// Opens edit page for booings. Used by admins
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="bookId">bookingid to be edited</param>
+        /// <returns>edit page</returns>
         public async Task<ActionResult> AdminEdit(int? id, int? bookId)
         {
             if (bookId == null)
@@ -169,6 +218,12 @@ namespace GoTravelApplication.Controllers
             return View(booking);
         }
 
+        /// <summary>
+        /// Edits existing booking
+        /// </summary>
+        /// <param name="id">logged in admins id</param>
+        /// <param name="booking">booking to be saved</param>
+        /// <returns>admindetails page</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DoEdit(int id, [Bind("BookingId,Title,Description,Price,StartDate,EndDate")] Booking booking)

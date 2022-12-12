@@ -33,7 +33,11 @@ namespace GoTravelApplication.Controllers
             return View(curBookings);
         }
 
-        // GET: CartBookings
+        /// <summary>
+        /// Checks out cart and creates customerbookings
+        /// </summary>
+        /// <param name="id">logged in customers id</param>
+        /// <returns>Customer Home page</returns>
         public async Task<IActionResult> Checkout(int? id)
         {
             var goTravelContext = _context.CartBookings.Include(c => c.Booking).Include(c => c.Customer);
