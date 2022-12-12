@@ -50,7 +50,7 @@
                     @Html.DisplayFor(modelItem => item.RequestTime)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Moderator.Password)
+                    @Html.DisplayFor(modelItem => item.Moderator.UserName)
                 </td>
                 <td>
                     @if (Int32.Parse(ViewData["loggedModId"].ToString()) == item.ModeratorId)

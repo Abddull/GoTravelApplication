@@ -11,3 +11,10 @@
         <input type="submit" value="Moderator Request Page" />
     </div>
 </form>
+
+<form asp-action="OpenAdminResponsePage" class="text-danger">
+    <input type="hidden" value="@ViewData["loggedModId"]" name="id" />
+    <div class="form-group">
+        <input type="submit" value="Admin Response Page" />
+    </div>
+</form>

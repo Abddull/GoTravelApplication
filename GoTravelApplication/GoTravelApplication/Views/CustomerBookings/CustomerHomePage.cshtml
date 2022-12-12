@@ -7,13 +7,16 @@
 <h1>Customer Home Page</h1>
 
 <p>
-    <a asp-action="SearchBookings" asp-route-id="@ViewData["loggedCustomerId"]"><div class="btn btn-primary">Search New bookings</div></a><br/><br />
+    <a asp-action="SearchBookings" asp-route-id="@ViewData["loggedCustomerId"]"><div class="btn btn-primary">Search New bookings</div></a><br /><br />
     <a asp-action="ToCart" asp-route-id="@ViewData["loggedCustomerId"]"><div class="btn btn-primary">View Your Cart</div></a>
 </p>
 <h4>Your Bookings:</h4>
 <table class="table">
     <thead>
         <tr>
+            <th>
+                Id
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Booking.Title)
             </th>
@@ -40,6 +43,9 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.CustomerBookingId)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.Booking.Title)
                 </td>
                 <td>
@@ -58,10 +64,11 @@
                     @Html.DisplayFor(modelItem => item.PurchaseDate)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.CustomerBookingId"><div class="btn btn-warning">Details</div></a> |
-                    <a asp-action="Delete" asp-route-id="@item.CustomerBookingId"><div class="btn btn-danger">Cancel</div</a>
+                    <a asp-action="Details" asp-route-id="@item.CustomerBookingId"><div class="btn btn-warning">Details</div></a>
+                    <a asp-action="Delete" asp-route-id="@item.CustomerBookingId"><div class="btn btn-danger">Cancel</div></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+

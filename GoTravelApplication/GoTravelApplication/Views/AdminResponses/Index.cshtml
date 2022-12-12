@@ -1,0 +1,60 @@
+﻿@model IEnumerable<GoTravelApplication.Model.AdminResponse>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Your Admin Responses</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResponseTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Admin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Moderator)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResponseTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Admin.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Moderator.UserName)
+            </td>
+            <td>
+                <form asp-action="Details" class="text-danger">
+                    <input type="hidden" value="@ViewData["loggedModId"]" name="modId" />
+                    <input type="hidden" value="@item.ResponseId" name="id" />
+                    <div class="form-group">
+                        <input type="submit" value="Details" class="btn btn-primary" />
+                    </div>
+                </form>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
